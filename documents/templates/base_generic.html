@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<HTML>
+   <HEAD>
+      <TITLE> Распознаватель</TITLE>
+      <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+            {%block her %}
+
+    {% endblock %}
+   </HEAD>
+   <BODY>
+       <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+       <h5 class="my-0 mr-md-auto font-weight-normal">Распознаватель</h5>
+       <nav class="my-2 my-md-0 mr-md-3">
+       <a class="p-2 text-dark" href="{% url 'mainpg' %}">Главная</a>
+       <a class="p-2 text-dark" href="{% url 'about_us' %}">Информация</a>
+       <a class="p-2 text-dark" href="#">О создателе</a>
+       </nav>
+            {% if user.is_authenticated %}
+                 <a class="p-2 text-dark" href="#">{{ user.get_username }}</a>
+                  <a class="btn btn-outline-primary" href="{% url 'logout'%}?next={{request.path}}">Выйти</a>
+           {% else %}
+            <a class="btn btn-outline-primary" href="{% url 'login'%}?next={{request.path}}">Войти</a>
+           {% endif %} 
+  
+      </div>
+        {% block content %}
+
+    {% endblock %}
+   </BODY>
+</HTML>

@@ -13,9 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.urls import path,include
+from django.conf.urls import url
 from django.contrib import admin
-from django.urls import path
+
+from documents.views import ocr_view, ocr_form_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^ocr/', ocr_view, name='ocr_view'),
+    url(r'^$', ocr_form_view, name='ocr_form_view'),
+    path('', include('documents.urls')), 
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

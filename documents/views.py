@@ -20,7 +20,7 @@ class OcrView(View):
     
         file_obj = request.FILES.get('image', None)
         if file_obj:
-            utf8_text = ocr_with_django.text_recognition.transcript(file_obj)
+            utf8_text = DIPLOM.text_recognition.transcript(file_obj)
             return JsonResponse({'utf8_text': utf8_text}, status=200)
         return JsonResponse({}, status=204)
 
